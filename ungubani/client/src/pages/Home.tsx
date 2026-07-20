@@ -1,7 +1,7 @@
 import { Link } from 'wouter';
 import HeroSection from '@/components/HeroSection';
 import ProjectCard from '@/components/ProjectCard';
-import { Building2, Users, Award, Zap, Shield, Lightbulb } from 'lucide-react';
+import { Building2, Users, Award, Zap } from 'lucide-react';
 
 /**
  * Design: Replicação exata da referência

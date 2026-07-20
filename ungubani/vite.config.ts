@@ -154,10 +154,32 @@ function vitePluginStorageProxy(): Plugin {
     name: "manus-storage-proxy",
     configureServer(server: ViteDevServer) {
       server.middlewares.use("/manus-storage", async (req, res) => {
-        const key = req.url?.replace(/^\//, "");
+        if (req.method !== "GET") {
+          res.writeHead(405, { "Content-Type": "text/plain", Allow: "GET" });
+          res.end("Method not allowed");
+          return;
+        }
+
+        const rawKey = req.url?.replace(/^\//, "") ?? "";
+        if (
+          !rawKey ||
+          rawKey.includes("..") ||
+          rawKey.includes("\\") ||
+          /%2e%2e/i.test(rawKey)
+        ) {
+          res.writeHead(400, { "Content-Type": "text/plain" });
+          res.end("Invalid storage key");
+          return;
+        }
+
+        const key = rawKey
+          .split("/")
+          .filter((segment) => segment && segment !== "." && segment !== "..")
+          .join("/");
+
         if (!key) {
           res.writeHead(400, { "Content-Type": "text/plain" });
-          res.end("Missing storage key");
+          res.end("Invalid storage key");
           return;
         }
 

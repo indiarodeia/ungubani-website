@@ -10,17 +10,25 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  // Hide implementation details and reduce fingerprinting
+  app.disable("x-powered-by");
+  app.use((_req, res, next) => {
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    next();
+  });
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  app.use(express.static(staticPath, { dotfiles: "ignore", index: false }));
 
   // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  app.get("*", (req, res) => {
+    void req;
+    res.sendFile(path.join(staticPath, "index.html"), { dotfiles: "deny" });
   });
 
   const port = process.env.PORT || 3000;
