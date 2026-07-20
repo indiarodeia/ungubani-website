@@ -75,7 +75,7 @@ export default function Projects() {
       <HeroSection
         title="Nossos Projetos"
         subtitle="Conheça os projetos que refletem qualidade, rigor e excelência"
-        backgroundImage="/manus-storage/hero-construction_8fcc4a53.png"
+        backgroundImage="/construtor.jpg"
       />
 
       {/* Projects Section */}

@@ -29,7 +29,7 @@ export default function PrimeInfinity() {
       <HeroSection
         title="Prime Infinity Residences"
         subtitle="Um novo conceito de habitação premium nos Açores"
-        backgroundImage="/manus-storage/project-residential-1_4d77dea1.png"
+        backgroundImage="/casa.jpg"
         ctaButtons={[
           { label: 'Manifestar Interesse', href: '#interest', variant: 'primary' },
           { label: 'Voltar aos Projetos', href: '/projects', variant: 'secondary' },
@@ -71,7 +71,7 @@ export default function PrimeInfinity() {
 
             <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
               <img
-                src="/manus-storage/project-residential-1_4d77dea1.png"
+                src="/cozinha.jpg"
                 alt="Prime Infinity Residences"
                 className="w-full h-full object-cover"
               />
@@ -138,12 +138,12 @@ export default function PrimeInfinity() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              '/manus-storage/project-residential-1_4d77dea1.png',
-              '/manus-storage/project-commercial_6303d279.png',
-              '/manus-storage/project-detail_0b9bf064.png',
-              '/manus-storage/hero-construction_8fcc4a53.png',
-              '/manus-storage/project-residential-1_4d77dea1.png',
-              '/manus-storage/project-commercial_6303d279.png',
+              '/casa.jpg',
+              '/cozinha.jpg',
+              '/sala.jpg',
+              '/predio.jpg',
+              '/casa-premium.jpg',
+              '/bar.jpg',
             ].map((image, idx) => (
               <div key={idx} className="relative h-64 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow group cursor-pointer">
                 <img

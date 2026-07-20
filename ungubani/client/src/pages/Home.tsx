@@ -71,7 +71,7 @@ export default function Home() {
       <HeroSection
         title="Construção com rigor, qualidade e visão."
         subtitle="Projetos customizados com precisão, confiança e atenção aos detalhes."
-        backgroundImage="/manus-storage/hero-construction_8fcc4a53.png"
+        backgroundImage="/casa-construtor.jpg"
         ctaButtons={[
           { label: 'Conhecer Projetos', href: '/projects' },
           { label: 'Abrir Contacto', href: '/contact', variant: 'secondary' },
@@ -103,7 +103,7 @@ export default function Home() {
             {/* Imagem */}
             <div className="rounded-lg overflow-hidden shadow-lg">
               <img
-                src="/manus-storage/project-residential-1_a1b2c3d4.png"
+                src="/casa-premium.jpg"
                 alt="Ungubani"
                 className="w-full h-full object-cover"
               />
@@ -172,7 +172,7 @@ export default function Home() {
             {/* Imagem */}
             <div className="rounded-lg overflow-hidden">
               <img
-                src="/manus-storage/project-residential-1_a1b2c3d4.png"
+                src="/predio.jpg"
                 alt="Prime Infinity Residences"
                 className="w-full h-full object-cover"
               />

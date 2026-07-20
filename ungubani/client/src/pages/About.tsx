@@ -16,7 +16,7 @@ export default function About() {
       <HeroSection
         title="Quem Somos"
         subtitle="Mais de duas décadas de experiência em construção civil de qualidade"
-        backgroundImage="/manus-storage/project-residential-1_4d77dea1.png"
+        backgroundImage="/casa-brown.jpg"
       />
 
       {/* History Section */}
@@ -37,7 +37,7 @@ export default function About() {
             </div>
             <div className="relative h-96 rounded-lg overflow-hidden shadow-lg">
               <img
-                src="/manus-storage/project-commercial_6303d279.png"
+                src="/sala.jpg"
                 alt="Ungubani - História"
                 className="w-full h-full object-cover"
               />

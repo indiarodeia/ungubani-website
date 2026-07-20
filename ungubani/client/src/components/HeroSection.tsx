@@ -13,8 +13,8 @@ interface HeroSectionProps {
 }
 
 /**
- * Design: Hero com overlay azul fade
- * - Overlay em gradiente azul
+ * Design: Hero com imagem de fundo
+ * - Imagem em destaque
  * - Tipografia elegante
  * - Espaçamento generoso
  */
@@ -34,16 +34,13 @@ export default function HeroSection({
         backgroundPosition: 'center',
       }}
     >
-      {/* Overlay azul com fade */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 via-blue-800/60 to-blue-700/50"></div>
-
       {/* Content */}
       <div className="relative z-10 container text-center text-white">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight font-serif">
+        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight font-serif drop-shadow-lg">
           {title}
         </h1>
         {subtitle && (
-          <p className="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed font-light drop-shadow-md">
             {subtitle}
           </p>
         )}

@@ -44,7 +44,7 @@ export default function Contact() {
       <HeroSection
         title="Contacte-nos"
         subtitle="Estamos aqui para responder às suas dúvidas e discutir o seu projeto"
-        backgroundImage="/manus-storage/hero-construction_8fcc4a53.png"
+        backgroundImage="/paisagem.jpg"
       />
 
       {/* Contact Section */}
