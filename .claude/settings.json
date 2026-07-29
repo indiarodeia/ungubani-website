@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git branch *)",
+      "Bash(git ls-tree *)",
+      "Bash(unzip -l ungubani-website-final.zip)",
+      "Bash(mkdir -p /tmp/zipcheck)",
+      "Bash(unzip -oq ungubani-website-final.zip -d /tmp/zipcheck)",
+      "Read(//tmp/zipcheck/**)",
+      "Bash(gh repo *)",
+      "Bash(npm -v)",
+      "Bash(npx --version)",
+      "Bash(npm init *)",
+      "Bash(npm install *)"
+    ]
+  }
+}
