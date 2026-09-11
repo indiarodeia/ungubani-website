@@ -25,25 +25,58 @@ const defaultAction: ContactFormAction = async () => {
   return { success: true };
 };
 
+export type ContactFormCopy = {
+  nameLabel: string;
+  nameError: string;
+  emailLabel: string;
+  emailRequiredError: string;
+  emailInvalidError: string;
+  phoneLabel: string;
+  messageLabel: string;
+  messageError: string;
+  submitLabel: string;
+  submittingLabel: string;
+  errorMessage: string;
+  successTitle: string;
+  successBody: string;
+};
+
+const defaultCopy: ContactFormCopy = {
+  nameLabel: "Nome",
+  nameError: "Indica o teu nome.",
+  emailLabel: "Email",
+  emailRequiredError: "Indica um email de contacto.",
+  emailInvalidError: "Introduz um email válido.",
+  phoneLabel: "Telefone (opcional)",
+  messageLabel: "Mensagem",
+  messageError: "Escreve uma mensagem.",
+  submitLabel: "Enviar mensagem",
+  submittingLabel: "A enviar…",
+  errorMessage: "Não foi possível enviar a mensagem. Tenta novamente.",
+  successTitle: "Mensagem enviada.",
+  successBody: "Obrigado pelo contacto. Vamos responder assim que possível.",
+};
+
 type Errors = Partial<Record<keyof ContactFormData, string>>;
 
-function validate(data: ContactFormData): Errors {
+function validate(data: ContactFormData, copy: ContactFormCopy): Errors {
   const errors: Errors = {};
-  if (!data.name.trim()) errors.name = "Indica o teu nome.";
+  if (!data.name.trim()) errors.name = copy.nameError;
   if (!data.email.trim()) {
-    errors.email = "Indica um email de contacto.";
+    errors.email = copy.emailRequiredError;
   } else if (!/^\S+@\S+\.\S+$/.test(data.email)) {
-    errors.email = "Introduz um email válido.";
+    errors.email = copy.emailInvalidError;
   }
-  if (!data.message.trim()) errors.message = "Escreve uma mensagem.";
+  if (!data.message.trim()) errors.message = copy.messageError;
   return errors;
 }
 
 type ContactFormProps = {
   action?: ContactFormAction;
+  copy?: ContactFormCopy;
 };
 
-export function ContactForm({ action = defaultAction }: ContactFormProps) {
+export function ContactForm({ action = defaultAction, copy = defaultCopy }: ContactFormProps) {
   const [data, setData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -61,7 +94,7 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const nextErrors = validate(data);
+    const nextErrors = validate(data, copy);
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
@@ -81,10 +114,8 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
         role="status"
         className="rounded-md border border-border bg-muted px-6 py-8 text-foreground"
       >
-        <p className="font-medium">Mensagem enviada.</p>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Obrigado pelo contacto. Vamos responder assim que possível.
-        </p>
+        <p className="font-medium">{copy.successTitle}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{copy.successBody}</p>
       </div>
     );
   }
@@ -92,7 +123,7 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
   return (
     <form noValidate onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-name">Nome</Label>
+        <Label htmlFor="contact-name">{copy.nameLabel}</Label>
         <Input
           id="contact-name"
           value={data.name}
@@ -108,7 +139,7 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-email">Email</Label>
+        <Label htmlFor="contact-email">{copy.emailLabel}</Label>
         <Input
           id="contact-email"
           type="email"
@@ -125,7 +156,7 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-phone">Telefone (opcional)</Label>
+        <Label htmlFor="contact-phone">{copy.phoneLabel}</Label>
         <Input
           id="contact-phone"
           type="tel"
@@ -135,7 +166,7 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <Label htmlFor="contact-message">Mensagem</Label>
+        <Label htmlFor="contact-message">{copy.messageLabel}</Label>
         <Textarea
           id="contact-message"
           rows={5}
@@ -153,12 +184,12 @@ export function ContactForm({ action = defaultAction }: ContactFormProps) {
 
       {status === "error" && (
         <p role="alert" className="text-sm text-destructive">
-          Não foi possível enviar a mensagem. Tenta novamente.
+          {copy.errorMessage}
         </p>
       )}
 
       <Button type="submit" disabled={status === "submitting"} className="self-start">
-        {status === "submitting" ? "A enviar…" : "Enviar mensagem"}
+        {status === "submitting" ? copy.submittingLabel : copy.submitLabel}
       </Button>
     </form>
   );

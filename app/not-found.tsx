@@ -3,10 +3,10 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <main className="mx-auto flex max-w-xl flex-col items-start gap-6 px-6 py-32">
-      <p className="text-sm font-medium tracking-wide text-accent uppercase">
+      <p className="text-xs font-medium tracking-[0.12em] text-accent uppercase">
         Erro 404
       </p>
-      <h1 className="text-display-2 font-display font-medium text-foreground italic">
+      <h1 className="text-display-2 font-display font-medium text-foreground">
         Página não encontrada
       </h1>
       <p className="text-muted-foreground">

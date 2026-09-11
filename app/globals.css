@@ -37,7 +37,7 @@
     --text-heading-1: 2.5rem;
     --text-heading-1--line-height: 1.15;
     --text-heading-1--letter-spacing: -0.01em;
-    --animate-marquee: marquee 56s linear infinite;
+    --animate-marquee: marquee 110s linear infinite;
 }
 
 @keyframes marquee {

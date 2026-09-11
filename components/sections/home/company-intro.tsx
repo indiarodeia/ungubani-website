@@ -7,6 +7,7 @@ type CompanyIntroProps = {
   title: string;
   paragraphs: string[];
   image?: string;
+  imageAlt?: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
@@ -16,17 +17,18 @@ export function CompanyIntro({
   title,
   paragraphs,
   image,
+  imageAlt = "",
   ctaLabel,
   ctaHref,
 }: CompanyIntroProps) {
   return (
-    <section className="bg-muted px-6 py-24">
+    <section className="bg-muted px-6 py-20">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-0">
         <div className="relative aspect-3/4 w-full max-w-sm overflow-hidden border border-border bg-background lg:aspect-auto lg:max-w-none">
           {image && (
             <Image
               src={image}
-              alt=""
+              alt={imageAlt}
               fill
               sizes="(min-width: 1024px) 30vw, 100vw"
               className="object-cover"
@@ -36,16 +38,16 @@ export function CompanyIntro({
 
         <div className="flex flex-col gap-6 lg:border-l lg:border-border lg:pl-14">
           {eyebrow && (
-            <span className="text-sm font-medium tracking-[0.15em] text-accent uppercase">
+            <span className="text-xs font-medium tracking-[0.12em] text-accent uppercase">
               {eyebrow}
             </span>
           )}
-          <h2 className="text-heading-1 font-display font-medium text-foreground italic">
+          <h2 className="text-heading-1 font-display font-medium text-foreground">
             {title}
           </h2>
           <div className="flex max-w-2xl flex-col gap-4">
             {paragraphs.map((paragraph) => (
-              <p key={paragraph} className="text-lg text-muted-foreground">
+              <p key={paragraph} className="text-lg leading-relaxed text-muted-foreground">
                 {paragraph}
               </p>
             ))}

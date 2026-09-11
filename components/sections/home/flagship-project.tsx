@@ -56,7 +56,7 @@ export function FlagshipProject({
   }, []);
 
   return (
-    <section className="bg-background py-24">
+    <section className="bg-background py-20">
       <div className="mx-4 sm:mx-6 lg:mx-10">
         <div
           ref={ref}
@@ -86,25 +86,25 @@ export function FlagshipProject({
               )}
             >
               <TechnicalGrid invert className="opacity-[0.12]" />
-              <span className="absolute right-6 bottom-6 font-display text-[10rem] leading-none font-medium text-primary-foreground/[0.06] italic sm:text-[14rem]">
+              <span className="absolute right-6 bottom-6 font-display text-[10rem] leading-none font-medium text-primary-foreground/[0.06] sm:text-[14rem]">
                 01
               </span>
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
 
           <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-8 sm:max-w-xl sm:p-12">
-            <span className="text-xs font-medium tracking-[0.15em] text-primary-foreground/70 uppercase">
+            <span className="text-xs font-medium tracking-[0.12em] text-primary-foreground/70 uppercase">
               {eyebrow}
             </span>
-            <h2 className="font-display text-display-2 font-medium text-primary-foreground italic">
+            <h2 className="font-display text-display-2 font-medium text-primary-foreground">
               {name}
             </h2>
             <p className="text-sm font-medium tracking-wide text-primary-foreground/70 uppercase">
               {location}
             </p>
-            <p className="text-primary-foreground/85">{description}</p>
+            <p className="leading-relaxed text-primary-foreground/85">{description}</p>
             <div>
               <Button asChild size="lg" variant="outline-invert">
                 <Link href={ctaHref} className="inline-flex items-center gap-2">

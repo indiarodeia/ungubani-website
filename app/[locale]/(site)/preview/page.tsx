@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Building2, HardHat, Ruler, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,10 @@ import { ProjectCard } from "@/components/shared/project-card";
 import { ServiceCard } from "@/components/shared/service-card";
 import { ContactForm } from "@/components/shared/contact-form";
 import type { Project, Service } from "@/content/types";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 const mockProjects: Project[] = [
   {

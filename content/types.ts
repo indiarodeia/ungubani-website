@@ -7,15 +7,27 @@ export type NavItem = {
 
 export type SiteConfig = {
   name: string;
+  legalName: string;
   tagline: string;
   description: string;
   nav: NavItem[];
+  primaryCta: NavItem;
   contact: {
-    email: string;
-    phone: string;
+    /** Undefined until the client confirms a final email address. */
+    email?: string;
+    /** Undefined until the client confirms a final phone number. */
+    phone?: string;
     address: string;
   };
   social: NavItem[];
+  footer: {
+    navLabel: string;
+    contactLabel: string;
+    emailPending: string;
+    phonePending: string;
+    rights: string;
+    tagline: string;
+  };
 };
 
 export type PageMeta = {
@@ -39,7 +51,8 @@ export type Project = {
   name: string;
   category: string;
   location: string;
-  year: number;
+  /** Omit until the completion year is confirmed by the client. */
+  year?: number;
   summary: string;
   image: string;
   featured?: boolean;

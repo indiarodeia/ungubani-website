@@ -51,7 +51,9 @@ export function ProjectCard({ project, size = "default" }: ProjectCardProps) {
             >
               {project.name}
             </h3>
-            <span className="text-sm text-primary-foreground/60">{project.year}</span>
+            {project.year && (
+              <span className="text-sm text-primary-foreground/60">{project.year}</span>
+            )}
           </div>
           <ArrowUpRight className="size-5 -translate-x-2 translate-y-2 shrink-0 text-primary-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" />
         </div>

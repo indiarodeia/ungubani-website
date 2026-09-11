@@ -25,8 +25,10 @@ export const aboutPresentation = {
 export const aboutPhilosophy = {
   eyebrow: "Missão",
   title: "Construir com propósito",
+  missionLabel: "Missão",
   mission:
     "A nossa missão é entregar obra pública e privada de qualidade nos Açores, com rigor técnico e respeito pelo território insular onde construímos.",
+  philosophyLabel: "Filosofia de Construção",
   philosophy:
     "Acreditamos numa construção pensada ao detalhe: cada projeto começa com um planeamento cuidado e termina com um controlo de qualidade rigoroso, para que o resultado dure décadas, não apenas anos.",
 };

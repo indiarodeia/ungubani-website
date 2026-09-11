@@ -1,26 +1,43 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { buildMetadata } from "@/lib/metadata";
+import { isLocale, type Locale } from "@/lib/locale";
+import { getDictionary } from "@/content/dictionaries";
 import { Hero } from "@/components/shared/hero";
 import { SectionTitle } from "@/components/shared/section-title";
 import { ValuesGrid } from "@/components/shared/values-grid";
 import { Presentation } from "@/components/sections/about/presentation";
 import { Philosophy } from "@/components/sections/about/philosophy";
 import { Expertise } from "@/components/sections/about/expertise";
-import {
-  aboutMeta,
-  aboutHero,
-  aboutPresentation,
-  aboutPhilosophy,
-  aboutExpertiseIntro,
-  aboutValuesIntro,
-} from "@/content/about";
-import { services } from "@/content/services";
-import { companyValues } from "@/content/values";
 
-export const metadata: Metadata = buildMetadata(aboutMeta);
+type PageProps = {
+  params: Promise<{ locale: string }>;
+};
 
-export default function AboutPage() {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale: Locale = isLocale(rawLocale) ? rawLocale : "pt";
+  return buildMetadata(getDictionary(locale).about.aboutMeta, "/about", locale);
+}
+
+export default async function AboutPage({ params }: PageProps) {
+  const { locale: rawLocale } = await params;
+  if (!isLocale(rawLocale)) notFound();
+  const locale = rawLocale;
+
+  const {
+    about: {
+      aboutHero,
+      aboutPresentation,
+      aboutPhilosophy,
+      aboutExpertiseIntro,
+      aboutValuesIntro,
+    },
+    services: { services },
+    values: { companyValues },
+  } = getDictionary(locale);
+
   return (
     <>
       <Hero {...aboutHero} size="compact" />

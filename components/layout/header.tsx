@@ -5,9 +5,11 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
-import { siteConfig } from "@/content/site";
 import { Button } from "@/components/ui/button";
 import { useScrollY } from "@/lib/use-scroll-y";
+import { LanguageSwitch } from "@/components/shared/language-switch";
+import { getDictionary } from "@/content/dictionaries";
+import type { Locale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import {
   Sheet,
@@ -18,12 +20,20 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-export function Header() {
+type HeaderProps = {
+  locale: Locale;
+};
+
+export function Header({ locale }: HeaderProps) {
+  const { siteConfig } = getDictionary(locale).site;
   const pathname = usePathname();
   const scrollY = useScrollY();
   const isScrolled = scrollY > 8;
-  const isHome = pathname === "/";
+  const isHome = pathname === `/${locale}`;
   const transparent = isHome && !isScrolled;
+
+  const otherPath = pathname.replace(/^\/(pt|en)/, "") || "";
+  const languageHrefs = { pt: `/pt${otherPath}`, en: `/en${otherPath}` };
 
   return (
     <header
@@ -40,15 +50,15 @@ export function Header() {
           isScrolled ? "h-14" : "h-16",
         )}
       >
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href={`/${locale}`} className="flex items-center gap-3">
           <Image
             src={transparent ? "/brand/logo-mark-inverted.png" : "/brand/logo-mark.png"}
             alt=""
-            width={28}
-            height={32}
+            width={30}
+            height={34}
             className={cn(
               "w-auto transition-all duration-300",
-              isScrolled ? "h-7" : "h-8",
+              isScrolled ? "h-8" : "h-9",
             )}
             priority
           />
@@ -63,25 +73,38 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {siteConfig.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "text-sm font-medium transition-colors",
-                transparent
-                  ? "text-white/85 hover:text-white"
-                  : "text-foreground/80 hover:text-foreground",
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {siteConfig.nav.map((item) => {
+            const isActive = item.href === pathname;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative py-1 text-sm font-medium transition-colors",
+                  transparent
+                    ? "text-white/85 hover:text-white"
+                    : "text-foreground/80 hover:text-foreground",
+                  isActive && (transparent ? "text-white" : "text-foreground"),
+                )}
+              >
+                {item.label}
+                {isActive && (
+                  <span
+                    className={cn(
+                      "absolute inset-x-0 -bottom-1 h-px",
+                      transparent ? "bg-white" : "bg-accent",
+                    )}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-5 md:flex">
+          <LanguageSwitch locale={locale} hrefs={languageHrefs} variant={transparent ? "dark" : "light"} />
           <Button asChild variant={transparent ? "outline-invert" : "default"}>
-            <Link href="/contact">Contacto</Link>
+            <Link href={siteConfig.primaryCta.href}>{siteConfig.primaryCta.label}</Link>
           </Button>
         </div>
 
@@ -93,7 +116,7 @@ export function Header() {
               className={cn("md:hidden", transparent && "text-white hover:bg-white/10 hover:text-white")}
             >
               <Menu />
-              <span className="sr-only">Abrir menu</span>
+              <span className="sr-only">{locale === "pt" ? "Abrir menu" : "Open menu"}</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
@@ -105,17 +128,21 @@ export function Header() {
                 <SheetClose asChild key={item.href}>
                   <Link
                     href={item.href}
-                    className="rounded-md px-2 py-3 text-base font-medium text-foreground hover:bg-muted"
+                    className={cn(
+                      "rounded-md px-2 py-3 text-base font-medium text-foreground hover:bg-muted",
+                      item.href === pathname && "text-accent",
+                    )}
                   >
                     {item.label}
                   </Link>
                 </SheetClose>
               ))}
             </nav>
-            <div className="mt-auto px-4 pb-4">
+            <div className="mt-auto flex flex-col gap-4 px-4 pb-4">
+              <LanguageSwitch locale={locale} hrefs={languageHrefs} className="px-2" />
               <SheetClose asChild>
                 <Button asChild className="w-full">
-                  <Link href="/contact">Contacto</Link>
+                  <Link href={siteConfig.primaryCta.href}>{siteConfig.primaryCta.label}</Link>
                 </Button>
               </SheetClose>
             </div>

@@ -16,15 +16,15 @@ export function AnnotationPanel({ label, children, className }: AnnotationPanelP
   return (
     <div
       className={cn(
-        "relative w-56 border border-border bg-background p-4 sm:w-64 sm:p-5",
+        "relative w-56 border border-border/80 bg-background/95 p-4 sm:w-64 sm:p-5",
         className,
       )}
     >
-      <span className="absolute -top-px -left-6 hidden h-px w-6 bg-border sm:block" />
-      <span className="text-xs font-medium tracking-[0.15em] text-accent uppercase">
+      <span className="absolute -top-px -left-6 hidden h-px w-6 bg-border/80 sm:block" />
+      <span className="text-xs font-medium tracking-[0.12em] text-accent uppercase">
         {label}
       </span>
-      <div className="mt-2">{children}</div>
+      <div className="mt-2.5">{children}</div>
     </div>
   );
 }

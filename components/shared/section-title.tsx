@@ -29,7 +29,7 @@ export function SectionTitle({
       {eyebrow && (
         <span
           className={cn(
-            "text-sm font-medium tracking-wide uppercase",
+            "text-xs font-medium tracking-[0.12em] uppercase",
             invert ? "text-primary-foreground/60" : "text-accent",
           )}
         >
@@ -38,7 +38,7 @@ export function SectionTitle({
       )}
       <Heading
         className={cn(
-          "text-heading-1 font-display font-medium italic",
+          "text-heading-1 font-display font-medium",
           invert ? "text-primary-foreground" : "text-foreground",
         )}
       >
@@ -47,7 +47,7 @@ export function SectionTitle({
       {description && (
         <p
           className={cn(
-            "max-w-2xl text-lg",
+            "max-w-2xl text-lg leading-relaxed",
             invert ? "text-primary-foreground/70" : "text-muted-foreground",
             isCenter && "mx-auto",
           )}

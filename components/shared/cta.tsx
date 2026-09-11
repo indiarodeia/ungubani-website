@@ -25,7 +25,7 @@ export function Cta({
   return (
     <section
       className={cn(
-        "relative overflow-hidden px-6 py-24",
+        "relative overflow-hidden px-6 py-20",
         isNavy ? "bg-primary text-primary-foreground" : "bg-muted",
       )}
     >
@@ -34,7 +34,7 @@ export function Cta({
         <div className="flex max-w-xl flex-col gap-4">
           <h2
             className={cn(
-              "text-display-2 font-display font-medium italic",
+              "text-display-1 font-display font-medium",
               isNavy ? "text-primary-foreground" : "text-foreground",
             )}
           >
@@ -43,7 +43,7 @@ export function Cta({
           {description && (
             <p
               className={cn(
-                "text-lg",
+                "text-lg leading-relaxed",
                 isNavy ? "text-primary-foreground/75" : "text-muted-foreground",
               )}
             >

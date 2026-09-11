@@ -21,7 +21,10 @@ type HeroProps = {
   secondaryLabel?: string;
   secondaryHref?: string;
   image?: string;
+  focalPoint?: string;
   licence?: HeroLicence;
+  licenceLabel?: string;
+  panelLabel?: string;
   specialisms?: string[];
   location?: string;
   size?: "full" | "compact";
@@ -36,7 +39,10 @@ export function Hero({
   secondaryLabel,
   secondaryHref,
   image,
+  focalPoint,
   licence,
+  licenceLabel = "Alvará",
+  panelLabel = "Informação Técnica",
   specialisms,
   location,
   size = "full",
@@ -52,7 +58,7 @@ export function Hero({
               {eyebrow}
             </span>
           )}
-          <h1 className="font-display text-display-2 font-medium text-foreground italic">
+          <h1 className="font-display text-display-2 font-medium whitespace-pre-line text-foreground italic">
             {headline}
           </h1>
           {subheadline && (
@@ -66,29 +72,36 @@ export function Hero({
   return (
     <section className="relative -mt-16 h-[92vh] min-h-[640px] w-full overflow-hidden bg-primary lg:h-screen">
       {image && (
-        <ParallaxMedia src={image} alt="" priority sizes="100vw" strength={0.08} />
+        <ParallaxMedia
+          src={image}
+          alt=""
+          priority
+          sizes="100vw"
+          strength={0.08}
+          focalPoint={focalPoint}
+        />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/10 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-transparent to-transparent lg:from-primary/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/5 to-transparent" />
+      <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-primary/35 via-primary/0 to-transparent lg:w-[55%]" />
 
       <div className="relative flex h-full flex-col justify-end gap-10 px-6 pt-24 pb-20 sm:pb-24 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:pr-16 lg:pb-28 lg:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
         <div className="flex max-w-2xl flex-col gap-6">
           {eyebrow && (
             <Reveal>
-              <span className="text-sm font-medium tracking-[0.2em] text-primary-foreground/80 uppercase">
+              <span className="text-xs font-medium tracking-[0.15em] text-primary-foreground/80 uppercase">
                 {eyebrow}
               </span>
             </Reveal>
           )}
           <Reveal delay={90}>
-            <h1 className="font-display text-display-1 font-medium text-primary-foreground italic">
+            <h1 className="font-display text-display-1 font-medium whitespace-pre-line text-primary-foreground italic">
               {headline}
             </h1>
           </Reveal>
           {subheadline && (
             <Reveal delay={180}>
-              <p className="max-w-xl text-lg text-primary-foreground/80">
+              <p className="max-w-xl text-lg leading-relaxed text-primary-foreground/80">
                 {subheadline}
               </p>
             </Reveal>
@@ -115,12 +128,12 @@ export function Hero({
 
         {(licence || (specialisms && specialisms.length > 0)) && (
           <Reveal delay={450} className="w-full max-w-xs lg:w-72 lg:shrink-0">
-            <AnnotationPanel label="Informação Técnica" className="w-full lg:w-72">
+            <AnnotationPanel label={panelLabel} className="w-full lg:w-72">
               <TechnicalGrid className="opacity-[0.04]" />
               <div className="relative flex flex-col gap-3">
                 {licence && (
                   <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
-                    <span className="text-sm text-muted-foreground">Alvará</span>
+                    <span className="text-sm text-muted-foreground">{licenceLabel}</span>
                     <span className="font-heading text-base font-medium text-foreground">
                       {licence.value}
                     </span>

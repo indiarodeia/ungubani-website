@@ -10,6 +10,7 @@ type ParallaxMediaProps = {
   priority?: boolean;
   sizes?: string;
   strength?: number;
+  focalPoint?: string;
 };
 
 export function ParallaxMedia({
@@ -18,6 +19,7 @@ export function ParallaxMedia({
   priority = false,
   sizes = "100vw",
   strength = 0.06,
+  focalPoint = "50% 50%",
 }: ParallaxMediaProps) {
   const scrollY = useScrollY();
   const offset = Math.max(-28, Math.min(28, scrollY * strength));
@@ -35,6 +37,7 @@ export function ParallaxMedia({
           priority={priority}
           sizes={sizes}
           className="object-cover"
+          style={{ objectPosition: focalPoint }}
         />
       </div>
     </div>

@@ -13,56 +13,24 @@ export const projectsHero = {
     "Uma seleção de obras que refletem o rigor técnico e a atenção ao detalhe da Ungubani.",
 };
 
+export const projectsPlaceholderLabel = "Projeto a adicionar";
+
+/**
+ * Only confirmed projects belong here. Prime Infinity Residence is the one
+ * project the client has confirmed so far — no invented names, locations,
+ * categories or years. Add real projects as the client supplies them; the
+ * `projects` page and the homepage grid both render placeholder slots for
+ * the rest automatically (see PlaceholderProjectCard).
+ */
 export const projects: Project[] = [
   {
-    slug: "edificio-marina",
-    name: "Edifício Marina",
+    slug: "prime-infinity-residence",
+    name: "Prime Infinity Residence",
     category: "Residencial",
-    location: "Ponta Delgada",
-    year: 2024,
+    location: "Ilha Terceira, Açores",
     summary:
-      "Edifício residencial multifamiliar com vista para o porto, construído com foco em eficiência energética.",
-    image: "/images/projects/edificio-marina.jpg",
+      "A Ungubani é responsável pela construção deste empreendimento residencial, que alia arquitetura contemporânea, qualidade construtiva e integração com a paisagem açoriana.",
+    image: "/images/projects/prime-infinity-residence.jpg",
     featured: true,
-  },
-  {
-    slug: "centro-tecnico-acores",
-    name: "Centro Técnico Açores",
-    category: "Industrial",
-    location: "Lagoa",
-    year: 2023,
-    summary:
-      "Instalação industrial com estrutura técnica adaptada a operações contínuas.",
-    image: "/images/projects/centro-tecnico-acores.jpg",
-    featured: true,
-  },
-  {
-    slug: "requalificacao-orla",
-    name: "Requalificação da Orla",
-    category: "Obra Pública",
-    location: "Vila Franca do Campo",
-    year: 2022,
-    summary:
-      "Requalificação da orla marítima, com nova pavimentação e espaços públicos.",
-    image: "/images/projects/requalificacao-orla.jpg",
-    featured: true,
-  },
-  {
-    slug: "residencial-fajazinha",
-    name: "Residencial Fajãzinha",
-    category: "Residencial",
-    location: "Lajes das Flores",
-    year: 2021,
-    summary: "Conjunto habitacional integrado na paisagem rural das Flores.",
-    image: "/images/projects/residencial-fajazinha.jpg",
-  },
-  {
-    slug: "pavilhao-desportivo",
-    name: "Pavilhão Desportivo",
-    category: "Equipamento Público",
-    location: "Ribeira Grande",
-    year: 2020,
-    summary: "Pavilhão multiusos para a comunidade, com estrutura de grande vão.",
-    image: "/images/projects/pavilhao-desportivo.jpg",
   },
 ];
