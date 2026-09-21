@@ -26,7 +26,8 @@ type HeaderProps = {
 
 export function Header({ locale }: HeaderProps) {
   const { siteConfig } = getDictionary(locale).site;
-  const pathname = usePathname();
+  const rawPathname = usePathname();
+  const pathname = rawPathname.length > 1 ? rawPathname.replace(/\/$/, "") : rawPathname;
   const scrollY = useScrollY();
   const isScrolled = scrollY > 8;
   const isHome = pathname === `/${locale}`;

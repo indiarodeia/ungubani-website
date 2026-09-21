@@ -7,7 +7,6 @@ import { isLocale, type Locale } from "@/lib/locale";
 import { getDictionary } from "@/content/dictionaries";
 import { Hero } from "@/components/shared/hero";
 import { ContactForm } from "@/components/shared/contact-form";
-import { submitContactForm } from "./actions";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -34,7 +33,7 @@ export default async function ContactPage({ params }: PageProps) {
       <Hero {...contactHero} size="compact" />
       <section className="px-6 py-24">
         <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2">
-          <ContactForm action={submitContactForm} copy={contactFormCopy} />
+          <ContactForm copy={contactFormCopy} />
 
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-3">

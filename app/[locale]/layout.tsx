@@ -4,7 +4,7 @@ import { Work_Sans, Source_Serif_4 } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { siteUrl } from "@/lib/site-url";
+import { siteUrl, allowIndexing } from "@/lib/site-url";
 import { locales, isLocale, type Locale } from "@/lib/locale";
 import { getDictionary } from "@/content/dictionaries";
 
@@ -41,6 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       template: `%s | ${siteConfig.name}`,
     },
     description: siteConfig.description,
+    ...(allowIndexing ? {} : { robots: { index: false, follow: false } }),
   };
 }
 
