@@ -56,7 +56,7 @@ export function FlagshipProject({
   }, []);
 
   return (
-    <section className="bg-background py-20">
+    <section className="bg-background py-28">
       <div className="mx-4 sm:mx-6 lg:mx-10">
         <div
           ref={ref}
@@ -74,7 +74,7 @@ export function FlagshipProject({
                 alt={name}
                 fill
                 sizes="(min-width: 1024px) 90vw, 100vw"
-                className="object-cover"
+                className="object-cover saturate-[.9] contrast-[1.03]"
                 style={{ objectPosition: focalPoint }}
               />
             </div>

@@ -8,6 +8,7 @@ type CompanyIntroProps = {
   paragraphs: string[];
   image?: string;
   imageAlt?: string;
+  focalPoint?: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
@@ -18,12 +19,13 @@ export function CompanyIntro({
   paragraphs,
   image,
   imageAlt = "",
+  focalPoint = "50% 50%",
   ctaLabel,
   ctaHref,
 }: CompanyIntroProps) {
   return (
-    <section className="bg-muted px-6 py-20">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-0">
+    <section className="bg-muted px-6 py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-0">
         <div className="relative aspect-3/4 w-full max-w-sm overflow-hidden border border-border bg-background lg:aspect-auto lg:max-w-none">
           {image && (
             <Image
@@ -31,12 +33,13 @@ export function CompanyIntro({
               alt={imageAlt}
               fill
               sizes="(min-width: 1024px) 30vw, 100vw"
-              className="object-cover"
+              className="object-cover saturate-[.9] contrast-[1.03]"
+              style={{ objectPosition: focalPoint }}
             />
           )}
         </div>
 
-        <div className="flex flex-col gap-6 lg:border-l lg:border-border lg:pl-14">
+        <div className="flex flex-col gap-7 lg:border-l lg:border-border lg:pl-16">
           {eyebrow && (
             <span className="text-xs font-medium tracking-[0.12em] text-accent uppercase">
               {eyebrow}

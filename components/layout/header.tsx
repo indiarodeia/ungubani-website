@@ -47,7 +47,7 @@ export function Header({ locale }: HeaderProps) {
       <div
         className={cn(
           "mx-auto flex max-w-6xl items-center justify-between px-6 transition-[height] duration-300",
-          isScrolled ? "h-14" : "h-16",
+          isScrolled ? "h-[4.5rem]" : "h-20",
         )}
       >
         <Link href={`/${locale}`} className="flex items-center gap-3">
@@ -58,13 +58,13 @@ export function Header({ locale }: HeaderProps) {
             height={34}
             className={cn(
               "w-auto transition-all duration-300",
-              isScrolled ? "h-8" : "h-9",
+              isScrolled ? "h-9" : "h-10",
             )}
             priority
           />
           <span
             className={cn(
-              "font-heading text-lg font-semibold tracking-tight transition-colors duration-300",
+              "font-heading text-xl font-semibold tracking-tight transition-colors duration-300",
               transparent ? "text-white" : "text-foreground",
             )}
           >

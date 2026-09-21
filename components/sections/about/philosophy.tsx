@@ -18,10 +18,10 @@ export function Philosophy({
   philosophy,
 }: PhilosophyProps) {
   return (
-    <section className="bg-muted px-6 py-24">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12">
+    <section className="bg-muted px-6 py-28">
+      <div className="mx-auto flex max-w-6xl flex-col gap-14">
         <SectionTitle eyebrow={eyebrow} title={title} align="center" />
-        <div className="grid grid-cols-1 gap-10 border-t border-border pt-10 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-12 border-t border-border pt-12 sm:grid-cols-2">
           <div className="flex flex-col gap-3">
             <h3 className="text-sm font-medium tracking-wide text-foreground uppercase">
               {missionLabel}

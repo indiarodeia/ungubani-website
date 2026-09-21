@@ -1,16 +1,9 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { ParallaxMedia } from "@/components/shared/parallax-media";
-import { AnnotationPanel } from "@/components/shared/annotation-panel";
-import { TechnicalGrid } from "@/components/shared/technical-grid";
 import { Reveal } from "@/components/shared/reveal";
-
-type HeroLicence = {
-  value: string;
-};
+import { Button } from "@/components/ui/button";
 
 type HeroProps = {
   eyebrow?: string;
@@ -22,11 +15,6 @@ type HeroProps = {
   secondaryHref?: string;
   image?: string;
   focalPoint?: string;
-  licence?: HeroLicence;
-  licenceLabel?: string;
-  panelLabel?: string;
-  specialisms?: string[];
-  location?: string;
   size?: "full" | "compact";
 };
 
@@ -40,18 +28,13 @@ export function Hero({
   secondaryHref,
   image,
   focalPoint,
-  licence,
-  licenceLabel = "Alvará",
-  panelLabel = "Informação Técnica",
-  specialisms,
-  location,
   size = "full",
 }: HeroProps) {
   const isFull = size === "full";
 
   if (!isFull) {
     return (
-      <section className="bg-muted px-6 py-20">
+      <section className="bg-muted px-6 py-24">
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
           {eyebrow && (
             <span className="text-sm font-medium tracking-wide text-accent uppercase">
@@ -69,95 +52,78 @@ export function Hero({
     );
   }
 
+  const headlineLines = headline.split("\n");
+
   return (
-    <section className="relative -mt-16 h-[92vh] min-h-[640px] w-full overflow-hidden bg-primary lg:h-screen">
+    <section className="relative -mt-20 min-h-[max(640px,92vh)] w-full overflow-hidden bg-primary lg:h-screen">
       {image && (
         <ParallaxMedia
           src={image}
           alt=""
           priority
           sizes="100vw"
-          strength={0.08}
+          strength={0.06}
           focalPoint={focalPoint}
         />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/5 to-transparent" />
-      <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-primary/35 via-primary/0 to-transparent lg:w-[55%]" />
+      {/* A single gradient pooled behind the copy, bottom-left — the render
+          stays clear and unveiled everywhere else, architecture included. */}
+      <div className="absolute inset-0 bg-[radial-gradient(130%_95%_at_0%_100%,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.24)_38%,rgba(0,0,0,0)_66%)]" />
 
-      <div className="relative flex h-full flex-col justify-end gap-10 px-6 pt-24 pb-20 sm:pb-24 lg:flex-row lg:items-end lg:justify-between lg:gap-12 lg:pr-16 lg:pb-28 lg:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
-        <div className="flex max-w-2xl flex-col gap-6">
+      <div className="relative flex h-full flex-col justify-center gap-9 px-6 py-28 lg:gap-10 lg:pl-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))]">
+        <div className="flex max-w-4xl flex-col gap-7">
           {eyebrow && (
             <Reveal>
-              <span className="text-xs font-medium tracking-[0.15em] text-primary-foreground/80 uppercase">
+              <span className="text-xs font-medium tracking-[0.16em] text-primary-foreground/90 uppercase">
                 {eyebrow}
               </span>
             </Reveal>
           )}
           <Reveal delay={90}>
-            <h1 className="font-display text-display-1 font-medium whitespace-pre-line text-primary-foreground italic">
-              {headline}
+            <h1 className="font-display text-4xl leading-[1.05] tracking-tight font-medium text-primary-foreground italic sm:text-5xl lg:text-6xl xl:text-display-1">
+              {headlineLines.map((line, index) => (
+                <span key={line} className="block lg:whitespace-nowrap">
+                  {line}
+                  {index < headlineLines.length - 1 && <br className="hidden lg:block" />}
+                </span>
+              ))}
             </h1>
           </Reveal>
           {subheadline && (
             <Reveal delay={180}>
-              <p className="max-w-xl text-lg leading-relaxed text-primary-foreground/80">
+              <p className="max-w-md text-base leading-relaxed text-primary-foreground/90 sm:text-lg">
                 {subheadline}
               </p>
             </Reveal>
           )}
-          <Reveal delay={270}>
-            <div className="flex flex-wrap items-center gap-6">
-              {ctaLabel && ctaHref && (
-                <Button asChild size="lg">
-                  <Link href={ctaHref}>{ctaLabel}</Link>
-                </Button>
-              )}
-              {secondaryLabel && secondaryHref && (
-                <Link
-                  href={secondaryHref}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary-foreground/90 underline-offset-4 hover:underline"
+          <div className="flex flex-wrap items-center gap-5">
+            {ctaLabel && ctaHref && (
+              <Reveal delay={270}>
+                <Button
+                  asChild
+                  className="h-[50px] rounded-[2px] px-8 text-sm tracking-[0.01em]"
                 >
-                  {secondaryLabel}
-                  <ArrowRight className="size-4" />
-                </Link>
-              )}
-            </div>
-          </Reveal>
+                  <Link href={ctaHref} className="inline-flex items-center gap-2">
+                    {ctaLabel}
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover/button:translate-x-1" />
+                  </Link>
+                </Button>
+              </Reveal>
+            )}
+            {secondaryLabel && secondaryHref && (
+              <Reveal delay={360}>
+                <Button
+                  asChild
+                  variant="outline-invert"
+                  className="h-[50px] rounded-[2px] px-8 text-sm tracking-[0.01em]"
+                >
+                  <Link href={secondaryHref}>{secondaryLabel}</Link>
+                </Button>
+              </Reveal>
+            )}
+          </div>
         </div>
-
-        {(licence || (specialisms && specialisms.length > 0)) && (
-          <Reveal delay={450} className="w-full max-w-xs lg:w-72 lg:shrink-0">
-            <AnnotationPanel label={panelLabel} className="w-full lg:w-72">
-              <TechnicalGrid className="opacity-[0.04]" />
-              <div className="relative flex flex-col gap-3">
-                {licence && (
-                  <div className="flex items-baseline justify-between gap-4 border-b border-border pb-3">
-                    <span className="text-sm text-muted-foreground">{licenceLabel}</span>
-                    <span className="font-heading text-base font-medium text-foreground">
-                      {licence.value}
-                    </span>
-                  </div>
-                )}
-                {specialisms && specialisms.length > 0 && (
-                  <ul
-                    className={cn(
-                      "flex flex-col gap-1 text-sm text-muted-foreground",
-                      location && "border-b border-border pb-3",
-                    )}
-                  >
-                    {specialisms.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-                {location && (
-                  <span className="text-sm text-muted-foreground">{location}</span>
-                )}
-              </div>
-            </AnnotationPanel>
-          </Reveal>
-        )}
       </div>
 
       <div className="absolute inset-x-0 bottom-6 hidden justify-center sm:flex">

@@ -36,7 +36,7 @@ export function ParallaxMedia({
           fill
           priority={priority}
           sizes={sizes}
-          className="object-cover"
+          className="object-cover saturate-[.9] contrast-[1.03]"
           style={{ objectPosition: focalPoint }}
         />
       </div>

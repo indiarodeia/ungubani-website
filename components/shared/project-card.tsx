@@ -29,7 +29,7 @@ export function ProjectCard({ project, size = "default" }: ProjectCardProps) {
               ? "(min-width: 1024px) 66vw, 100vw"
               : "(min-width: 1024px) 33vw, 100vw"
           }
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover saturate-[.9] contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/15 to-transparent transition-opacity duration-500 group-hover:from-primary/95" />
 

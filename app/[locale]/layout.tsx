@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
-import { IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { Work_Sans, Source_Serif_4 } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import { siteUrl } from "@/lib/site-url";
 import { locales, isLocale, type Locale } from "@/lib/locale";
 import { getDictionary } from "@/content/dictionaries";
 
-const plexSans = IBM_Plex_Sans({
+const workSans = Work_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-sans",
@@ -74,7 +74,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html
       lang={locale === "pt" ? "pt-PT" : "en"}
-      className={cn("font-sans", plexSans.variable, sourceSerif.variable)}
+      className={cn("font-sans", workSans.variable, sourceSerif.variable)}
     >
       <head>
         <script

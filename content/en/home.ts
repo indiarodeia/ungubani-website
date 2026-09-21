@@ -11,20 +11,12 @@ export const homeHero = {
   headline: "We build with vision.\nWe execute with rigour.",
   subheadline:
     "From concept to completed build, we develop projects with quality, technical precision and knowledge of the Azorean territory.",
-  ctaLabel: "View projects",
-  ctaHref: "/en/projects",
-  secondaryLabel: "Get to know Ungubani",
-  secondaryHref: "/en/about",
-  // TEMPORARY — stock image. Replace with a real Ungubani project photo
-  // (wide, landscape-friendly crop) as soon as the client supplies one.
-  image: "/images/hero-home.jpg",
-  focalPoint: "42% 45%",
-  licence: {
-    value: "Class 4",
-  },
-  licenceLabel: "Licence",
-  panelLabel: "Technical Information",
-  location: "Azores, Portugal",
+  ctaLabel: "Get to know Ungubani",
+  ctaHref: "/en/about",
+  secondaryLabel: "View projects",
+  secondaryHref: "/en/projects",
+  image: "/images/projects/prime-infinity-residence.jpg",
+  focalPoint: "70% 46%",
 };
 
 export const homeAbout = {
@@ -36,10 +28,11 @@ export const homeAbout = {
   ],
   ctaLabel: "Meet the team",
   ctaHref: "/en/about",
-  // TEMPORARY — reused stock construction-detail photo, not a real Ungubani
-  // site. Replace with a real Ungubani image (tall crop) when available.
-  image: "/images/projects/centro-tecnico-acores.jpg",
-  imageAlt: "Construction detail — temporary placeholder image, to be replaced",
+  // TEMPORARY — stock jobsite photo, not a real Ungubani site. Replace with
+  // a real Ungubani work-in-progress image (tall crop) when available.
+  image: "/images/projects/residencial-fajazinha.jpg",
+  imageAlt: "Worker on site — temporary placeholder image, to be replaced",
+  focalPoint: "26% 30%",
 };
 
 export const homeServicesIntro = {

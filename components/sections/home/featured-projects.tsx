@@ -34,8 +34,8 @@ export function FeaturedProjects({
   const [primary, ...secondary] = slots.slice(0, GRID_SLOTS);
 
   return (
-    <section className="px-6 py-20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12">
+    <section className="px-6 py-28">
+      <div className="mx-auto flex max-w-6xl flex-col gap-14">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <SectionTitle eyebrow={eyebrow} title={title} description={description} />
           <Link
@@ -47,7 +47,7 @@ export function FeaturedProjects({
           </Link>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-7 lg:grid-cols-3">
           <Reveal className="lg:col-span-2">
             {primary ? (
               <ProjectCard project={primary} size="large" />
@@ -55,7 +55,7 @@ export function FeaturedProjects({
               <PlaceholderProjectCard size="large" label={placeholderLabel} />
             )}
           </Reveal>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-7">
             {secondary.map((project, index) => (
               <Reveal key={project?.slug ?? `placeholder-${index}`} delay={(index + 1) * 100}>
                 {project ? (

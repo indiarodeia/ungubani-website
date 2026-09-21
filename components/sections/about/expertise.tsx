@@ -10,14 +10,14 @@ type ExpertiseProps = {
 
 export function Expertise({ eyebrow, title, description, services }: ExpertiseProps) {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12">
+    <section className="px-6 py-28">
+      <div className="mx-auto flex max-w-6xl flex-col gap-14">
         <SectionTitle eyebrow={eyebrow} title={title} description={description} />
         <div className="flex flex-col divide-y divide-border border-t border-border">
           {services.map(({ icon: Icon, title: serviceTitle, description: serviceDescription }) => (
             <div
               key={serviceTitle}
-              className="flex flex-col gap-3 py-8 sm:flex-row sm:items-start sm:gap-8"
+              className="flex flex-col gap-3 py-9 sm:flex-row sm:items-start sm:gap-8"
             >
               <div className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted text-primary">
                 <Icon className="size-5" />

@@ -12,7 +12,7 @@ type LicenceHighlightProps = {
 
 export function LicenceHighlight({ classNumber, heading, label, text }: LicenceHighlightProps) {
   return (
-    <section className="relative overflow-hidden bg-primary py-16 text-primary-foreground">
+    <section className="relative overflow-hidden bg-primary py-20 text-primary-foreground">
       <TechnicalGrid invert />
       <div className="relative mx-auto max-w-6xl px-6">
         <Reveal className="flex flex-col items-stretch gap-8 sm:flex-row sm:items-center">

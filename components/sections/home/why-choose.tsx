@@ -14,10 +14,10 @@ type WhyChooseProps = {
 
 export function WhyChoose({ eyebrow, title, description, items }: WhyChooseProps) {
   return (
-    <section className="px-6 py-20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12">
+    <section className="px-6 py-28">
+      <div className="mx-auto flex max-w-6xl flex-col gap-14">
         <SectionTitle eyebrow={eyebrow} title={title} description={description} />
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => (
             <Reveal key={item.title} delay={index * 90} className="h-full">
               <WhyChooseCard
@@ -45,7 +45,7 @@ type WhyChooseCardProps = {
 
 function WhyChooseCard({ number, index, icon: Icon, title, description }: WhyChooseCardProps) {
   return (
-    <div className="group relative flex h-full flex-col justify-between gap-6 overflow-hidden border border-border bg-muted p-7 transition-colors duration-300 hover:bg-muted/70 lg:aspect-square">
+    <div className="group relative flex h-full flex-col justify-between gap-6 overflow-hidden border border-border bg-muted p-8 transition-colors duration-300 hover:bg-muted/70 lg:aspect-square">
       <span className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100" />
 
       <div className="relative flex h-16 items-start justify-between">

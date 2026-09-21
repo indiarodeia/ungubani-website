@@ -22,7 +22,7 @@ export function SectionTitle({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         isCenter && "items-center text-center",
       )}
     >

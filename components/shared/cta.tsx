@@ -25,13 +25,13 @@ export function Cta({
   return (
     <section
       className={cn(
-        "relative overflow-hidden px-6 py-20",
+        "relative overflow-hidden px-6 py-24",
         isNavy ? "bg-primary text-primary-foreground" : "bg-muted",
       )}
     >
       {isNavy && <TechnicalGrid invert />}
-      <Reveal className="relative mx-auto flex max-w-6xl flex-col items-start gap-10 lg:flex-row lg:items-end lg:justify-between">
-        <div className="flex max-w-xl flex-col gap-4">
+      <Reveal className="relative mx-auto flex max-w-6xl flex-col items-start gap-12 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex max-w-xl flex-col gap-5">
           <h2
             className={cn(
               "text-display-1 font-display font-medium",

@@ -11,20 +11,12 @@ export const homeHero = {
   headline: "Construímos com visão.\nExecutamos com rigor.",
   subheadline:
     "Da ideia à obra concluída, desenvolvemos projetos com qualidade, precisão técnica e conhecimento do território açoriano.",
-  ctaLabel: "Ver projetos",
-  ctaHref: "/pt/projects",
-  secondaryLabel: "Conhecer a Ungubani",
-  secondaryHref: "/pt/about",
-  // TEMPORARY — stock image. Replace with a real Ungubani project photo
-  // (wide, landscape-friendly crop) as soon as the client supplies one.
-  image: "/images/hero-home.jpg",
-  focalPoint: "42% 45%",
-  licence: {
-    value: "Classe 4",
-  },
-  licenceLabel: "Alvará",
-  panelLabel: "Informação Técnica",
-  location: "Açores, Portugal",
+  ctaLabel: "Conhecer a Ungubani",
+  ctaHref: "/pt/about",
+  secondaryLabel: "Ver projetos",
+  secondaryHref: "/pt/projects",
+  image: "/images/projects/prime-infinity-residence.jpg",
+  focalPoint: "70% 46%",
 };
 
 export const homeAbout = {
@@ -36,10 +28,11 @@ export const homeAbout = {
   ],
   ctaLabel: "Conhecer a equipa",
   ctaHref: "/pt/about",
-  // TEMPORARY — reused stock construction-detail photo, not a real Ungubani
-  // site. Replace with a real Ungubani image (tall crop) when available.
-  image: "/images/projects/centro-tecnico-acores.jpg",
-  imageAlt: "Detalhe construtivo — imagem temporária, a substituir",
+  // TEMPORARY — stock jobsite photo, not a real Ungubani site. Replace with
+  // a real Ungubani work-in-progress image (tall crop) when available.
+  image: "/images/projects/residencial-fajazinha.jpg",
+  imageAlt: "Trabalhador em obra — imagem temporária, a substituir",
+  focalPoint: "26% 30%",
 };
 
 export const homeServicesIntro = {

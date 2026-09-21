@@ -17,7 +17,7 @@ export default async function SiteLayout({ children, params }: SiteLayoutProps) 
   return (
     <>
       <Header locale={locale} />
-      <main className="pt-16">{children}</main>
+      <main className="pt-20">{children}</main>
       <Footer locale={locale} />
     </>
   );

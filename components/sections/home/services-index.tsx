@@ -23,7 +23,7 @@ export function ServicesIndex({ eyebrow, title, description, locale }: ServicesI
   const ActiveIcon = activeService.icon;
 
   return (
-    <section id="servicos" className="scroll-mt-16 px-6 py-24">
+    <section id="servicos" className="scroll-mt-20 px-6 py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr_1fr] lg:gap-10">
           <div className="lg:sticky lg:top-28 lg:self-start">

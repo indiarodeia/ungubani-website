@@ -54,7 +54,7 @@ export default async function Home({ params }: PageProps) {
 
   return (
     <>
-      <Hero {...homeHero} size="full" specialisms={specialisms} />
+      <Hero {...homeHero} size="full" />
       <CompanyIntro {...homeAbout} />
       <ServicesIndex {...homeServicesIntro} locale={locale} />
       <ExpertiseMarquee

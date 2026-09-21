@@ -6,9 +6,9 @@ type PresentationProps = {
 
 export function Presentation({ eyebrow, title, paragraphs }: PresentationProps) {
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="flex flex-col gap-4">
+    <section className="px-6 py-28">
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="flex flex-col gap-5">
           <span className="text-xs font-medium tracking-[0.12em] text-accent uppercase">
             {eyebrow}
           </span>
@@ -16,7 +16,7 @@ export function Presentation({ eyebrow, title, paragraphs }: PresentationProps) 
             {title}
           </h2>
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-6">
           {paragraphs.map((paragraph) => (
             <p key={paragraph} className="text-lg leading-relaxed text-muted-foreground">
               {paragraph}
