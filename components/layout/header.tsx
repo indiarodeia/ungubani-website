@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
+import { DropdownMenu } from "radix-ui";
 
 import { Button } from "@/components/ui/button";
 import { useScrollY } from "@/lib/use-scroll-y";
@@ -24,6 +25,18 @@ type HeaderProps = {
   locale: Locale;
 };
 
+const moreInLabelByLocale: Record<Locale, (label: string) => string> = {
+  pt: (label) => `Mais em ${label}`,
+  en: (label) => `More in ${label}`,
+  fr: (label) => `Plus dans ${label}`,
+};
+
+const openMenuLabelByLocale: Record<Locale, string> = {
+  pt: "Abrir menu",
+  en: "Open menu",
+  fr: "Ouvrir le menu",
+};
+
 export function Header({ locale }: HeaderProps) {
   const { siteConfig } = getDictionary(locale).site;
   const rawPathname = usePathname();
@@ -33,8 +46,12 @@ export function Header({ locale }: HeaderProps) {
   const isHome = pathname === `/${locale}`;
   const transparent = isHome && !isScrolled;
 
-  const otherPath = pathname.replace(/^\/(pt|en)/, "") || "";
-  const languageHrefs = { pt: `/pt${otherPath}`, en: `/en${otherPath}` };
+  const otherPath = pathname.replace(/^\/(pt|en|fr)/, "") || "";
+  const languageHrefs = {
+    pt: `/pt${otherPath}`,
+    en: `/en${otherPath}`,
+    fr: `/fr${otherPath}`,
+  };
 
   return (
     <header
@@ -75,29 +92,90 @@ export function Header({ locale }: HeaderProps) {
 
         <nav className="hidden items-center gap-8 md:flex">
           {siteConfig.nav.map((item) => {
-            const isActive = item.href === pathname;
+            const isActive =
+              item.href === pathname || item.children?.some((child) => child.href === pathname);
+            const linkColor = transparent
+              ? "text-white/85 hover:text-white"
+              : "text-foreground/80 hover:text-foreground";
+            const activeColor = transparent ? "text-white" : "text-foreground";
+
+            if (!item.children?.length) {
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "relative py-1 text-sm font-medium transition-colors",
+                    linkColor,
+                    isActive && activeColor,
+                  )}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span
+                      className={cn(
+                        "absolute inset-x-0 -bottom-1 h-px",
+                        transparent ? "bg-white" : "bg-accent",
+                      )}
+                    />
+                  )}
+                </Link>
+              );
+            }
+
             return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "relative py-1 text-sm font-medium transition-colors",
-                  transparent
-                    ? "text-white/85 hover:text-white"
-                    : "text-foreground/80 hover:text-foreground",
-                  isActive && (transparent ? "text-white" : "text-foreground"),
-                )}
-              >
-                {item.label}
-                {isActive && (
-                  <span
-                    className={cn(
-                      "absolute inset-x-0 -bottom-1 h-px",
-                      transparent ? "bg-white" : "bg-accent",
-                    )}
-                  />
-                )}
-              </Link>
+              <div key={item.href} className="relative flex items-center gap-1">
+                <Link
+                  href={item.href}
+                  className={cn(
+                    "relative py-1 text-sm font-medium transition-colors",
+                    linkColor,
+                    isActive && activeColor,
+                  )}
+                >
+                  {item.label}
+                  {isActive && (
+                    <span
+                      className={cn(
+                        "absolute inset-x-0 -bottom-1 h-px",
+                        transparent ? "bg-white" : "bg-accent",
+                      )}
+                    />
+                  )}
+                </Link>
+                <DropdownMenu.Root>
+                  <DropdownMenu.Trigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        "rounded-[2px] p-0.5 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
+                        linkColor,
+                      )}
+                    >
+                      <ChevronDown className="size-3.5" />
+                      <span className="sr-only">{moreInLabelByLocale[locale](item.label)}</span>
+                    </button>
+                  </DropdownMenu.Trigger>
+                  <DropdownMenu.Portal>
+                    <DropdownMenu.Content
+                      align="start"
+                      sideOffset={16}
+                      className="z-50 min-w-48 border border-border bg-background py-1.5 shadow-[0_8px_24px_-12px_rgba(15,23,42,0.25)] data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0"
+                    >
+                      {item.children.map((child) => (
+                        <DropdownMenu.Item key={child.href} asChild>
+                          <Link
+                            href={child.href}
+                            className="block px-4 py-2 text-sm font-medium text-foreground/80 outline-none transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground"
+                          >
+                            {child.label}
+                          </Link>
+                        </DropdownMenu.Item>
+                      ))}
+                    </DropdownMenu.Content>
+                  </DropdownMenu.Portal>
+                </DropdownMenu.Root>
+              </div>
             );
           })}
         </nav>
@@ -117,7 +195,7 @@ export function Header({ locale }: HeaderProps) {
               className={cn("md:hidden", transparent && "text-white hover:bg-white/10 hover:text-white")}
             >
               <Menu />
-              <span className="sr-only">{locale === "pt" ? "Abrir menu" : "Open menu"}</span>
+              <span className="sr-only">{openMenuLabelByLocale[locale]}</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
@@ -126,17 +204,32 @@ export function Header({ locale }: HeaderProps) {
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4">
               {siteConfig.nav.map((item) => (
-                <SheetClose asChild key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "rounded-md px-2 py-3 text-base font-medium text-foreground hover:bg-muted",
-                      item.href === pathname && "text-accent",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                </SheetClose>
+                <div key={item.href} className="flex flex-col">
+                  <SheetClose asChild>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "rounded-md px-2 py-3 text-base font-medium text-foreground hover:bg-muted",
+                        item.href === pathname && "text-accent",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </SheetClose>
+                  {item.children?.map((child) => (
+                    <SheetClose asChild key={child.href}>
+                      <Link
+                        href={child.href}
+                        className={cn(
+                          "rounded-md px-2 py-2.5 pl-6 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground",
+                          child.href === pathname && "text-accent",
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </div>
               ))}
             </nav>
             <div className="mt-auto flex flex-col gap-4 px-4 pb-4">

@@ -9,7 +9,11 @@ export const siteConfig: SiteConfig = {
   nav: [
     { label: "Home", href: "/en" },
     { label: "About", href: "/en/about" },
-    { label: "Services", href: "/en#servicos" },
+    {
+      label: "Services",
+      href: "/en#servicos",
+      children: [{ label: "Engineered LSF", href: "/en/lsf" }],
+    },
     { label: "Projects", href: "/en/projects" },
     { label: "Contact", href: "/en/contact" },
   ],

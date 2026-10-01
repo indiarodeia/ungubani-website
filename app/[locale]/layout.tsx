@@ -45,6 +45,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+const htmlLangByLocale: Record<Locale, string> = {
+  pt: "pt-PT",
+  en: "en",
+  fr: "fr",
+};
+
+const addressRegionByLocale: Record<Locale, string> = {
+  pt: "Ilha Terceira, Açores",
+  en: "Terceira Island, Azores",
+  fr: "Île de Terceira, Açores",
+};
+
+const areaServedByLocale: Record<Locale, string> = {
+  pt: "Açores, Portugal",
+  en: "Azores, Portugal",
+  fr: "Açores, Portugal",
+};
+
 function buildStructuredData(locale: Locale) {
   const { siteConfig } = getDictionary(locale).site;
 
@@ -54,14 +72,14 @@ function buildStructuredData(locale: Locale) {
     name: siteConfig.name,
     legalName: siteConfig.legalName,
     description: siteConfig.description,
-    url: locale === "pt" ? `${siteUrl}/pt` : `${siteUrl}/en`,
+    url: `${siteUrl}/${locale}`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Angra do Heroísmo",
-      addressRegion: locale === "pt" ? "Ilha Terceira, Açores" : "Terceira Island, Azores",
+      addressRegion: addressRegionByLocale[locale],
       addressCountry: "PT",
     },
-    areaServed: locale === "pt" ? "Açores, Portugal" : "Azores, Portugal",
+    areaServed: areaServedByLocale[locale],
   };
 }
 
@@ -74,7 +92,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 
   return (
     <html
-      lang={locale === "pt" ? "pt-PT" : "en"}
+      lang={htmlLangByLocale[locale]}
       className={cn("font-sans", workSans.variable, sourceSerif.variable)}
     >
       <head>

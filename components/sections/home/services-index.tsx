@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { SectionTitle } from "@/components/shared/section-title";
 import { TechnicalGrid } from "@/components/shared/technical-grid";
@@ -13,10 +15,17 @@ type ServicesIndexProps = {
   eyebrow: string;
   title: string;
   description: string;
+  learnMoreLabel?: string;
   locale: Locale;
 };
 
-export function ServicesIndex({ eyebrow, title, description, locale }: ServicesIndexProps) {
+export function ServicesIndex({
+  eyebrow,
+  title,
+  description,
+  learnMoreLabel = "Saber mais",
+  locale,
+}: ServicesIndexProps) {
   const { services } = getDictionary(locale).services;
   const [active, setActive] = useState(0);
   const activeService = services[active];
@@ -72,9 +81,18 @@ export function ServicesIndex({ eyebrow, title, description, locale }: ServicesI
                       isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
                   >
-                    <p className="overflow-hidden pr-10 pb-5 text-muted-foreground">
-                      {service.description}
-                    </p>
+                    <div className="overflow-hidden pr-10 pb-5">
+                      <p className="text-muted-foreground">{service.description}</p>
+                      {service.href && (
+                        <Link
+                          href={service.href}
+                          className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
+                        >
+                          {learnMoreLabel}
+                          <ArrowRight className="size-4" />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </li>
               );
@@ -92,7 +110,18 @@ export function ServicesIndex({ eyebrow, title, description, locale }: ServicesI
                     {service.title}
                   </span>
                 </summary>
-                <p className="pb-4 pl-9 text-muted-foreground">{service.description}</p>
+                <div className="pb-4 pl-9">
+                  <p className="text-muted-foreground">{service.description}</p>
+                  {service.href && (
+                    <Link
+                      href={service.href}
+                      className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      {learnMoreLabel}
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  )}
+                </div>
               </details>
             ))}
           </div>

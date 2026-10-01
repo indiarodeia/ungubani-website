@@ -6,6 +6,7 @@ import { locales, localeHref } from "@/lib/locale";
 const routes = [
   { path: "/", priority: 1 },
   { path: "/about", priority: 0.8 },
+  { path: "/lsf", priority: 0.8 },
   { path: "/projects", priority: 0.8 },
   { path: "/contact", priority: 0.6 },
 ];

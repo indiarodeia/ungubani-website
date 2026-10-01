@@ -1,9 +1,13 @@
 import { cpSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { execSync } from "node:child_process";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
 const base = process.env.STATIC_BASE_PATH ?? "/ungubani";
 const out = "out";
-const dest = "hostinger-upload";
+// Written outside the project: iCloud (Documents) creates "name 2" conflict
+// copies inside synced folders, which would end up on the server.
+const dest = process.env.HOSTINGER_OUT ?? join(homedir(), "Downloads", "ungubani-hostinger-upload");
 
 if (!existsSync(out)) throw new Error("`out/` not found — the static export failed.");
 
@@ -42,5 +46,6 @@ Options -Indexes
 rmSync(dest, { recursive: true, force: true });
 cpSync(out, dest, { recursive: true });
 rmSync(`${dest}.zip`, { force: true });
-execSync(`cd ${dest} && zip -qr ../${dest}.zip . -x ".DS_Store"`);
-console.log(`\nReady: ./${dest}/ and ./${dest}.zip`);
+execSync(`cd "${dest}" && zip -qr "${dest}.zip" . -x ".DS_Store"`);
+rmSync(out, { recursive: true, force: true });
+console.log(`\nReady:\n  ${dest}/\n  ${dest}.zip`);
