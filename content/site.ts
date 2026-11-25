@@ -9,7 +9,11 @@ export const siteConfig: SiteConfig = {
   nav: [
     { label: "Início", href: "/pt" },
     { label: "Quem Somos", href: "/pt/about" },
-    { label: "Serviços", href: "/pt#servicos" },
+    {
+      label: "Serviços",
+      href: "/pt#servicos",
+      children: [{ label: "LSF Engenheirado", href: "/pt/lsf" }],
+    },
     { label: "Projetos", href: "/pt/projects" },
     { label: "Contactos", href: "/pt/contact" },
   ],

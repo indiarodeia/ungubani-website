@@ -39,6 +39,11 @@ export const homeServicesIntro = {
   eyebrow: "Services",
   title: "What we do",
   description: "From design to delivery, we support every phase of the project.",
+  learnMoreLabel: "Learn more",
+};
+
+export const homeExpertiseMarquee = {
+  srLabel: "Areas of expertise",
 };
 
 export const homeWhyChoose = {

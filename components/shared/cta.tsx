@@ -6,18 +6,24 @@ import { Reveal } from "@/components/shared/reveal";
 import { TechnicalGrid } from "@/components/shared/technical-grid";
 
 type CtaProps = {
+  eyebrow?: string;
   heading: string;
   description?: string;
   buttonLabel: string;
   buttonHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
   variant?: "navy" | "light";
 };
 
 export function Cta({
+  eyebrow,
   heading,
   description,
   buttonLabel,
   buttonHref,
+  secondaryLabel,
+  secondaryHref,
   variant = "navy",
 }: CtaProps) {
   const isNavy = variant === "navy";
@@ -32,6 +38,16 @@ export function Cta({
       {isNavy && <TechnicalGrid invert />}
       <Reveal className="relative mx-auto flex max-w-6xl flex-col items-start gap-12 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex max-w-xl flex-col gap-5">
+          {eyebrow && (
+            <span
+              className={cn(
+                "text-xs font-medium tracking-[0.12em] uppercase",
+                isNavy ? "text-primary-foreground/60" : "text-accent",
+              )}
+            >
+              {eyebrow}
+            </span>
+          )}
           <h2
             className={cn(
               "text-display-1 font-display font-medium",
@@ -51,9 +67,22 @@ export function Cta({
             </p>
           )}
         </div>
-        <Button asChild size="lg" variant={isNavy ? "outline-invert" : "default"} className="shrink-0">
-          <Link href={buttonHref}>{buttonLabel}</Link>
-        </Button>
+        <div className="flex shrink-0 flex-wrap items-center gap-4">
+          <Button asChild size="lg" variant={isNavy ? "outline-invert" : "default"}>
+            <Link href={buttonHref}>{buttonLabel}</Link>
+          </Button>
+          {secondaryLabel && secondaryHref && (
+            <Link
+              href={secondaryHref}
+              className={cn(
+                "text-sm font-medium underline-offset-4 hover:underline",
+                isNavy ? "text-primary-foreground/80 hover:text-primary-foreground" : "text-primary",
+              )}
+            >
+              {secondaryLabel}
+            </Link>
+          )}
+        </div>
       </Reveal>
     </section>
   );

@@ -18,6 +18,7 @@ export const services: Service[] = [
     icon: Layers,
     title: "LSF Engenheirado",
     description: "Soluções construtivas modernas, eficientes e sustentáveis.",
+    href: "/pt/lsf",
   },
   {
     icon: Blocks,

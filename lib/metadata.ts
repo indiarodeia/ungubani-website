@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import type { PageMeta } from "@/content/types";
 import { getDictionary } from "@/content/dictionaries";
-import { localeHref, type Locale } from "@/lib/locale";
+import { locales, localeHref, type Locale } from "@/lib/locale";
+
+const ogLocaleByLocale: Record<Locale, string> = {
+  pt: "pt_PT",
+  en: "en_US",
+  fr: "fr_FR",
+};
 
 export function buildMetadata(meta: PageMeta, path: string, locale: Locale): Metadata {
   const { siteConfig } = getDictionary(locale).site;
@@ -13,8 +19,7 @@ export function buildMetadata(meta: PageMeta, path: string, locale: Locale): Met
     alternates: {
       canonical,
       languages: {
-        pt: localeHref("pt", path),
-        en: localeHref("en", path),
+        ...Object.fromEntries(locales.map((l) => [l, localeHref(l, path)])),
         "x-default": localeHref("pt", path),
       },
     },
@@ -23,7 +28,7 @@ export function buildMetadata(meta: PageMeta, path: string, locale: Locale): Met
       description: meta.description,
       url: canonical,
       siteName: siteConfig.name,
-      locale: locale === "pt" ? "pt_PT" : "en_US",
+      locale: ogLocaleByLocale[locale],
       type: "website",
       images: ["/images/projects/prime-infinity-residence.jpg"],
     },

@@ -37,7 +37,11 @@ export function Footer({ locale }: FooterProps) {
             <p className="max-w-xs text-sm text-primary-foreground/65">
               {siteConfig.description}
             </p>
-            <LanguageSwitch locale={locale} hrefs={{ pt: "/pt", en: "/en" }} variant="dark" />
+            <LanguageSwitch
+              locale={locale}
+              hrefs={{ pt: "/pt", en: "/en", fr: "/fr" }}
+              variant="dark"
+            />
           </div>
 
           <nav className="flex flex-col gap-2.5 md:border-l md:border-primary-foreground/10 md:pl-10">

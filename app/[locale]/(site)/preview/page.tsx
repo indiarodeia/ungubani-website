@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Building2, HardHat, Ruler, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -68,6 +69,8 @@ const mockServices: Service[] = [
 ];
 
 export default function ComponentPreviewPage() {
+  if (process.env.NODE_ENV === "production") notFound();
+
   return (
     <div className="flex flex-col gap-24 pb-24">
       <div className="mx-auto w-full max-w-6xl px-6 pt-16">

@@ -34,6 +34,7 @@ export default async function Home({ params }: PageProps) {
       homeHero,
       homeAbout,
       homeServicesIntro,
+      homeExpertiseMarquee,
       homeWhyChoose,
       homeLicence,
       homeProjectsIntro,
@@ -57,10 +58,7 @@ export default async function Home({ params }: PageProps) {
       <Hero {...homeHero} size="full" />
       <CompanyIntro {...homeAbout} />
       <ServicesIndex {...homeServicesIntro} locale={locale} />
-      <ExpertiseMarquee
-        items={specialisms}
-        srLabel={locale === "pt" ? "Áreas de especialização" : "Areas of expertise"}
-      />
+      <ExpertiseMarquee items={specialisms} srLabel={homeExpertiseMarquee.srLabel} />
       <WhyChoose {...homeWhyChoose} items={whyChooseUs} />
       <FlagshipProject {...homeFlagshipProject} />
       <LicenceHighlight {...homeLicence} />
