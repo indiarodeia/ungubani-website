@@ -18,7 +18,7 @@ Referência inicial de 25 de novembro de 2026. `dev` é a branch de integração
 | Prioridade | Tarefa | Estado e condição de conclusão |
 | --- | --- | --- |
 | Alta | Consolidar briefing, conteúdos e design | A aguardar materiais do ChatGPT. Registar as decisões validadas e partilháveis sobre públicos, mensagens, navegação, idiomas e identidade final. |
-| Alta | Rever os dois commits de `main` para integração em `dev` | Por iniciar. Validar separadamente FR, página LSF, navegação, SEO e exportação estática. Registar o que será integrado e verificar o resultado em `dev`. |
+| Alta | Rever os dois commits de `main` para integração em `dev` | Em revisão no [PR #1](https://github.com/indiarodeia/ungubani-website/pull/1), de `docs/dev-integration` para `dev`. A exclusão de `preview` no pacote passou a abranger todos os diretórios exportados, incluindo FR e futuros idiomas. Merge e validação final em `dev` pendentes. |
 | Alta | Confirmar domínio, alojamento e modelo de execução | A confirmar. Identificar destino, versão servida, forma de pré-visualizar e publicar, URL canónica e responsável pela publicação. Esta escolha orienta a integração do formulário. |
 | Alta | Completar os contactos e a entrega de mensagens | A aguardar contactos públicos, destino das mensagens e decisão sobre alojamento. Validar envio real e tratamento de erros sem escrever dados pessoais no log, ou aprovar um canal de contacto alternativo. Confirmar se o mapa faz parte do lançamento. |
 | Média | Completar o portefólio e rever as imagens | A aguardar materiais autorizados. Validar a imagem inicial e os recursos de cada obra, preencher as entradas aprovadas e decidir quais os lugares provisórios a manter durante o desenvolvimento. |

@@ -1,4 +1,4 @@
-import { cpSync, rmSync, writeFileSync, existsSync } from "node:fs";
+import { cpSync, rmSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -12,7 +12,11 @@ const dest = process.env.HOSTINGER_OUT ?? join(homedir(), "Downloads", "ungubani
 if (!existsSync(out)) throw new Error("`out/` not found — the static export failed.");
 
 // Internal component gallery must never ship.
-for (const l of ["pt", "en"]) rmSync(`${out}/${l}/preview`, { recursive: true, force: true });
+for (const entry of readdirSync(out, { withFileTypes: true })) {
+  if (entry.isDirectory()) {
+    rmSync(join(out, entry.name, "preview"), { recursive: true, force: true });
+  }
+}
 
 // "/" has no page in the app (it's a redirect), so ship a tiny redirect page.
 writeFileSync(

@@ -6,6 +6,14 @@ O código em `dev` é a referência técnica e a base de integração. A anális
 
 Este documento reúne o contexto e as decisões confirmadas que podem ser partilhadas publicamente. O [roadmap](ROADMAP.md) acompanha prioridades, dependências e estado das tarefas. As [instruções de trabalho](../AGENTS.md) aplicam-se a quem editar o repositório.
 
+### Integração em revisão
+
+O [PR #1](https://github.com/indiarodeia/ungubani-website/pull/1), de `docs/dev-integration` para `dev`, reúne os dois commits adicionais de `main` e a documentação. Os detalhes de `dev` abaixo descrevem a base anterior ao merge. A pré-visualização da Vercel é criada automaticamente para a branch; a publicação em produção continua por autorizar.
+
+Na branch do PR, o empacotador foi corrigido para remover a pasta `preview` de todos os diretórios exportados antes de criar o ZIP, incluindo FR e futuros idiomas. Esta correção substitui a limitação PT/EN descrita no histórico de `main` abaixo.
+
+Validação da correção: `npm run lint` terminou sem erros e com os dois avisos existentes de dependências de `useEffect`; `npm run build` e `npm run build:static` passaram. O ZIP gerado contém as 15 páginas públicas em PT, EN e FR, `.htaccess` e o redirecionamento para PT, sem diretórios `preview`. Uma verificação isolada com um quarto idioma confirmou a mesma exclusão sem remover as páginas públicas.
+
 Para retomar trabalho entre ChatGPT e Codex, usa estes documentos e indica a branch ou o commit em análise. Quando forem validados materiais preparados no ChatGPT, regista aqui os requisitos e decisões autorizados para divulgação, com a data e a referência de origem quando for partilhável. Mantém os textos do site nos dicionários e atualiza a tarefa correspondente no roadmap. Materiais privados, dados pessoais e credenciais ficam nos canais autorizados.
 
 ## Âmbito e requisitos conhecidos
